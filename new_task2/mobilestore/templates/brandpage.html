@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <body>
+{% for mobile in mobiles %}
+    <p>{{ mobile.model }} == {{ mobile.price }}</p>
+{% endfor %}
+</body>
+{% endblock %}

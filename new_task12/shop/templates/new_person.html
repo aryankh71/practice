@@ -1,0 +1,12 @@
+<h2>New Person</h2>
+
+<body>
+<div>
+    <form method="POST">
+      {{ forms.as_p }} {% csrf_token %}
+    <input type="submit" value="save"/>
+    </form>
+
+</div>
+
+</body>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+</head>
+{% block body %}
+<body>
+    {% for form in forms %}
+        <p>{{ form.brand }}</p>
+{% endfor %}
+</body>
+{% endblock %}
+</html>

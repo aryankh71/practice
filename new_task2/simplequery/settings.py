@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "mobilestore",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -117,4 +118,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = 'mobilestore.customuser'
+# AUTH_USER_MODEL = 'mobilestore.customuser'

@@ -1,0 +1,22 @@
+.products-container {
+    display: flex; /* Make the container a flex container */
+    flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
+    justify-content: space-around; /* Distribute items evenly with space around them */
+}
+
+.product {
+    width: 30%; /* Set width for each product section */
+    margin-bottom: 20px; /* Add spacing between products */
+    border: 1px solid #ccc; /* Add border around each product section */
+    padding: 10px; /* Add padding inside each product section */
+}
+
+.product a {
+    text-decoration: none; /* Remove underline from anchor tags */
+    color: inherit; /* Inherit text color */
+}
+
+/* Optionally, add additional styling for product details */
+.product div {
+    /* Add styles for the container inside each product section */
+}

@@ -1,0 +1,23 @@
+<!-- inventory.html -->
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>افزودن موجودی انبار</title>
+</head>
+<body>
+    <h1>افزودن موجودی انبار</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ inventory_form.as_p }}
+        <button type="submit">ذخیره</button>
+    </form>
+
+    <h2>موجودی کالاها</h2>
+    <ul>
+        {% for mobile in mobiles_with_model %}
+            <li>{{ mobile.model }}: {{ mobile.stock }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

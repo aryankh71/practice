@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ brands }}</title>
+</head>
+<body>
+{% block body %}
+        <form method="POST">
+            {{ forms.as_p }}
+            <button type="submit">submit</button>
+        </form>
+</body>
+{% endblock %}
+</html>

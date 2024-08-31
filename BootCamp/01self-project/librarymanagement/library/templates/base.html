@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>{% block title %}کتابخانه{% endblock %}</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <nav>
+                <a>کتابخانه</a>
+            <ul class="sidebar-menu">
+                <li><a href="{% url 'createauthor' %}"> نویسنده جدید</a></li>
+                <li><a href="{% url 'createbooks' %}"> کتاب جدید</a></li>
+                <li><a href="{% url 'bookslist' %}">لیست کتاب ها</a></li>
+            </ul>
+        </nav>
+</head>
+<body>
+        {% block content %}
+        {% endblock %}
+</body>
+</html>

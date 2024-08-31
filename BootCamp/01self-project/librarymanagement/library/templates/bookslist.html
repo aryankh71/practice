@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <head>
+    <title>{% block title %}لیست کتاب ها{% endblock %}</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body dir="rtl"></body>
+    <h1>لیست کتاب‌ها</h1>
+<div class="filter-container">
+    <form method="GET" action="">
+        <input type="text" name="q" value="{{ query }}" placeholder="جستجو بر اساس نام کتاب یا نویسنده">
+        <button type="submit">جستجو</button>
+        <input type="number" name="min_price" value="{{ min_price }}" placeholder="حداقل قیمت">
+        <input type="number" name="max_price" value="{{ max_price }}" placeholder="حداکثر قیمت">
+        <input type="date" name="start_date" value="{{ start_date }}" placeholder="از تاریخ">
+        <input type="date" name="end_date" value="{{ end_date }}" placeholder="تا تاریخ">
+        <button type="submit">فیلتر</button>
+   </form>
+</div>
+    <body/>
+    <table>
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام کتاب</th>
+                <th>نویسنده</th>
+                <th>تاریخ انتشار</th>
+                <th>دسته‌بندی</th>
+                <th>قیمت</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.published }}</td>
+                    <td>{{ book.categories }}</td>
+                    <td>{{ book.price }}</td>
+<td>
+    <a href="{% url 'edit_book' book.id %}" class="edit-icon" title="ویرایش">
+        <i class="fas fa-edit"></i>
+    </a>
+    <form method="post" action="{% url 'delete_book' book.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="delete-icon" title="حذف">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </form>
+</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">موردی یافت نشد.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

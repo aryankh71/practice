@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سبد خرید {{ user.username }}</title>
+    <style>
+        body {
+            font-family: 'Tahoma', Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart-item img {
+            max-width: 100px;
+            border-radius: 5px;
+        }
+        .cart-item-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .cart-item-price {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .total-price {
+            text-align: right;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>سبد خرید {{ user.first_name }}</h1>
+        </div>
+        <div class="content">
+{% if cartitem_set %}
+    {% for item in cartitem_set %}
+        <div class="cart-item">
+            <img src="/media/{{ item.product.photo }}" alt="{{ item.product.model }}">
+            <div class="cart-item-details">
+                <h2>{{ item.product.brand }} {{ item.product.model }}</h2>
+                <p>تعداد: {{ item.quantity }}</p>
+                <p class="cart-item-price">قیمت: {{ item.product.price }} ریال</p>
+            </div>
+            <form action="{% url 'user_cart' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <button type="submit" class="remove-from-cart">حذف</button>
+            </form>
+        </div>
+    {% endfor %}
+    <div class="total-price">
+        <h2>قیمت کل: {{ total_price }} ریال</h2>
+    </div>
+{% else %}
+    <p>سبد خرید شما خالی است</p>
+{% endif %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

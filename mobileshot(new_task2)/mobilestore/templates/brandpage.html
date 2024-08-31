@@ -1,0 +1,71 @@
+<!-- brandpage.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <title>صفحه محصولات</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mobile Store{% endblock %}</title>
+    <style>
+        /* CSS styles */
+        .products-container {
+            display: flex; /* Make the container a flex container */
+            flex-wrap: wrap; /* Allow items to wrap to the next row if needed */
+            justify-content: space-around; /* Distribute items evenly with space around them */
+        }
+
+        .product {
+            width: 30%; /* Set width for each product section */
+            margin-bottom: 20px; /* Add spacing between products */
+            border: 1px solid #ccc; /* Add border around each product section */
+            padding: 10px; /* Add padding inside each product section */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+            transition: box-shadow 0.3s ease; /* Add transition for smooth hover effect */
+        }
+
+        .product:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+        }
+
+        .product a {
+            text-decoration: none; /* Remove underline from anchor tags */
+            color: inherit; /* Inherit text color */
+        }
+
+        /* Optionally, add additional styling for product details */
+        .product div {
+            /* Add styles for the container inside each product section */
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>Our Products</h2>
+<div>
+{#    <a href="{% url 'logout' %}">logout</a>#}
+</div>
+    <div class="products-container">
+
+        {% for mobile in mobiles %}
+            {% if mobile.is_available %}
+            <section class="product">
+                <a href="{% url 'mobiledetails' mobile.id %}">
+                    <div>
+                        <h3>{{ mobile.brand }}</h3>
+                        <img src="/media/{{ mobile.photo }}" width="240" height="220" alt="{{ mobile.model }}">
+
+                        <p>{{ mobile.model }}</p>
+                        <p>Price: {{ mobile.price }}</p>
+                    </div>
+                </a>
+            </section>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</body>
+{% endblock %}
+</html>
